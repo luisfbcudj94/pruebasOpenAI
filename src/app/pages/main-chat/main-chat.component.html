@@ -1,0 +1,17 @@
+<div class="container-main-chat">
+
+  <div class="container-response">
+    <div class="content">
+      <pre [innerHTML]="completion"></pre>
+    </div>
+  </div>
+    
+  
+  <div class="container-input">
+      <!-- <input #message maxlength="256" autocomplete="off" type="text"> -->
+      <textarea name="message" id="" cols="30" rows="10" #message></textarea>
+      <button mat-raised-button color="primary" (click)="onSubmit(message.value)">Enviar</button>
+  </div>
+  
+  
+</div>
