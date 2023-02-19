@@ -1,9 +1,27 @@
 <div class="container-main-chat">
 
-  <div class="container-response">
+  <div class="container-response" [ngClass]="{'container-response-onlyText': !isCheckedImage}">
     <div class="content">
       <pre [innerHTML]="completion"></pre>
     </div>
+    <div class="images" *ngIf="isCheckedImage">
+      <div *ngFor="let imagenUrl of imagenesArray" class="image">
+        <img [src]="imagenUrl" alt="imagen">
+      </div>      
+    </div>
+  </div>
+
+  <div class="container-actions-images">
+    <label for="">¿Desean generar una imagen relacionada?</label>
+    <input type="checkbox"  (change)="onCheckboxChange($event)">
+    <label>Cantidad de imagenes a generar</label>
+    <select [(ngModel)]="valueSelect">
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
   </div>
     
   
@@ -12,6 +30,7 @@
       <textarea name="message" id="" cols="30" rows="10" #message></textarea>
       <button mat-raised-button color="primary" (click)="onSubmit(message.value)">Enviar</button>
   </div>
+
   
   
 </div>

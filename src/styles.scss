@@ -20,6 +20,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         border-radius: 4px;
     }
 
+    app-main-chat{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
     .container-aside{
         height: 100%;
         box-shadow: 0px 8px 16px rgb(7 0 156 / 6%);
@@ -28,15 +35,21 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .container-main-chat{
-    height: 100%;
+    height: 95%;
     display: grid;
-    grid-template-columns: 10% 80% 10%;
-    grid-template-rows: 80% 20%;
+    grid-template-columns: 2% 96% 2%;
+    grid-template-rows: 80% 5% 15%;
+    width: 95%;
+    box-shadow: 0px 8px 16px rgb(7 0 156 / 6%);
+    border-radius: 4px;
 
     .container-response{
         grid-column: 2/3;
+        display: grid;
+        grid-template-columns: 70% 30%;
 
         .content{
+            height: 438px;
 
             pre{
                 font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -47,13 +60,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
                 height: 438px;
             }
         }
+
+        .images{
+            height: 438px;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .image{
+                margin-bottom: 10px;
+                border: 1px solid red;
+                display: flex;
+            }
+        }
+    }
+
+    .container-response-onlyText{
+        grid-column: 2/3;
+        display: grid;
+        grid-template-columns: 100%;
     }
 
     .container-input{
         display: flex;
         justify-content: center;
         align-items: center;
-        grid-row: 2/3;
+        grid-row: 3/4;
         grid-column: 1/4;
 
         textarea{
@@ -61,12 +94,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
             padding: 10px;
             font-size: 14px;
             line-height: 20px;
-            width: 80%;
+            width: 86%;
             height: 50px;
         }
 
         button{
             margin-left: 15px; 
         }
+    }
+
+    .container-actions-images{
+        display: flex;
+        align-items: center;
+        grid-column: 1/3;
     }
 }
