@@ -32,4 +32,23 @@ export class OpenaiService {
     //   timeout(10000)
     // );
   }
+
+  public getImages(prompt: string, num_images: number): Observable<any> {
+  
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.apiKey}`
+    });
+
+    const body = {
+      'model': 'image-alpha-001',
+      'prompt': prompt,
+      'num_images': num_images,
+      'size': '256x256',
+    };
+
+    const url = 'https://api.openai.com/v1/images/generations';
+    return this.http.post<any>(url, body, { headers: headers });
+  }
+  
 }

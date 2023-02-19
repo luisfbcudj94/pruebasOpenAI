@@ -9,15 +9,24 @@ import { Observable } from 'rxjs';
 })
 export class MainChatComponent {
 
+  imagenesArray: string[] = [];
+  isCheckedImage: boolean = false;
+  valueSelect: string = '';
+
+
+
   title = 'pruebasOpenAi';
 
-  public prompt = '';
-  public model = 'text-davinci-003';
-  public temperature = 0.2;
-  public completion: string = '';
-  public max_tokens: number = 2000;
+  prompt = '';
+  // model = 'text-davinci-003';
+  model = 'code-davinci-002'
+  temperature = 0.2;
+  completion: string = '';
+  max_tokens: number = 2000;
 
-  public apiKey = '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';
+  
+
+  apiKey = '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';
 
   text = '';
 
@@ -48,7 +57,36 @@ export class MainChatComponent {
     this.prompt = message;
     this.getCompletions();
 
+    if(this.isCheckedImage){
+      this.getImages(this.prompt,parseInt(this.valueSelect));
+    }
+  
+
   }
+
+  public getImages(prompt: string, num_images: number) {
+
+    console.log(num_images)
+
+  
+    this.openaiService.getImages(prompt,num_images).subscribe(
+      (response) => {
+        console.log(response)
+        this.imagenesArray = response.data.map((item: any) => item.url);
+        console.log(this.imagenesArray)
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  onCheckboxChange(event: any) {
+    this.imagenesArray = [];
+    this.isCheckedImage = !this.isCheckedImage;
+    console.log('Checkbox changed', event.target.checked);
+  }
+  
 
   
 }
