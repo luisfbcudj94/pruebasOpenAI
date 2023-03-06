@@ -28,7 +28,7 @@ export class MainChatComponent {
 
   
 
-  apiKey = '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';
+  apiKey = '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';
 
   text = '';
 
