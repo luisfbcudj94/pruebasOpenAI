@@ -9,7 +9,7 @@ import { timeout } from 'rxjs/operators';
 })
 export class OpenaiService {
   private apiUrl = 'https://api.openai.com/v1/completions';
-  private apiKey = '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';
+  private apiKey = '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';
 
   constructor(private http: HttpClient) {}
 
