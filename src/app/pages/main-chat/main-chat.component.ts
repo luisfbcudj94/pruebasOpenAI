@@ -13,16 +13,18 @@ export class MainChatComponent {
   isCheckedImage: boolean = false;
   valueSelect: string = '';
 
+  isLoading: boolean = false;
+
 
 
   title = 'pruebasOpenAi';
 
   prompt = '';
-  // model = 'text-davinci-003';
-  model = 'code-davinci-002'
+  model = 'text-davinci-003';
+  // model = 'code-davinci-002'
   temperature = 0.2;
   completion: string = '';
-  max_tokens: number = 2000;
+  max_tokens: number = 3900;
 
   
 
@@ -41,14 +43,18 @@ export class MainChatComponent {
   }
 
   public getCompletions() {
+    this.isLoading = true;
     this.openaiService.getCompletions(this.prompt, this.model, this.temperature, this.max_tokens)
       .subscribe((response) => {
         console.log("this.completion: ",response)
         this.completion = response.choices[0].text;
+
+        this.isLoading = false;
         // this.completion = this.completion.replace(/\n/g, '<br>')
         console.log("this.completion: ",this.completion)
       }, (error) => {
         console.log(error);
+        this.isLoading = false;
       });
   }
 
@@ -65,6 +71,7 @@ export class MainChatComponent {
   }
 
   public getImages(prompt: string, num_images: number) {
+    this.isLoading = true;
 
     console.log(num_images)
 
@@ -74,9 +81,11 @@ export class MainChatComponent {
         console.log(response)
         this.imagenesArray = response.data.map((item: any) => item.url);
         console.log(this.imagenesArray)
+        this.isLoading = false;
       },
       (error) => {
         console.log(error);
+        this.isLoading = false;
       }
     );
   }
